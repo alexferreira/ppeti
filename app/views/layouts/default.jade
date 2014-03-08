@@ -1,0 +1,31 @@
+doctype 5
+html
+  include ../includes/head
+  body
+    include ../includes/header
+    .container
+      .row
+        .span9
+          block main
+          block content
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Buscar
+                li
+                  form.form-search(method="get", action="/")
+                    .input-append
+                      input.buscar(type='text', name='q', value=q)
+                      span.add-on
+                        i.icon-search
+                  p Busca apenas nos titulos
+              li.nav-header Tags
+                li
+                  .tags
+                    if (tags)   
+                      each tag in tags
+                        a.label.label-info(href="/tags/"+tag._id) #{tag._id}
+
+      hr
+      include ../includes/footer
+    include ../includes/scripts

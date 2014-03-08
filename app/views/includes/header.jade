@@ -1,0 +1,58 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand(href='/') PPETI
+      .nav-collapse.collapse
+        ul.nav
+          li
+            a(href='/')
+              i.icon-home
+              | Home
+          if (tags)
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  i.icon-tags
+                  | Tags
+                  b.caret
+                ul.dropdown-menu
+                  each tag in tags
+                    li
+                      a(href="/tags/"+tag._id)
+                        = tag._id
+                        .pull-right
+                          span.badge.badge-info= tag.value
+
+          li
+            a(href='/perguntas/new')
+              i.icon-pencil
+              | Adicionar pergunta
+
+          li
+            a(href='/sobre')
+              i.icon-search
+              | Sobre
+
+
+        if (isAuthenticated)
+          .pull-right
+            ul.nav.pull-right
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | Bem Vindo,
+                  = user.email
+                  |
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/users/'+user.id+'/edit')
+                      i.icon-cog
+                      | Alterar senha
+                  li.divider
+                  li
+                    a(href='/logout')
+                      i.icon-off
+                      | Logout

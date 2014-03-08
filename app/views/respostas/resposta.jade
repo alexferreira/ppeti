@@ -1,0 +1,14 @@
+
+if (resposta && resposta.email)
+  .resposta
+    if (isAuthenticated && pergunta.user.id != user.id)
+      form.form-inline.pull-left.confirm(action="/perguntas/"+pergunta.id+"/respostas/"+resposta.id, method="pergunta")
+        input(type="hidden", name="_method", value="DELETE")
+        button.btn.btn-danger.btn-mini(type="submit")
+          <i class="icon-trash icon-white"></i>
+      &nbsp;
+    //- strong= resposta.email
+    //- |  :&nbsp;
+    != resposta.body
+    br
+    span.label.label-info.pull-right=formatDatetime(resposta.createdAt)

@@ -1,0 +1,16 @@
+form.form-vertical(method="post", action="/perguntas/#{pergunta._id}/respostas")
+  if (messages.length)
+    each message in messages
+      .fade.in.alert.alert-block.alert-error
+        a.close(data-dismiss="alert", href="javascript:void(0)") x
+        = message
+  //- .control-group
+  //-   .controls
+  //-     input#username.span4(type='text', name='email', placeholder='Digite seu email')
+  .control-group
+    .controls
+      //- textarea#resposta.span4(type='text', rows="6", name="body", placeholder='Digite seu comentário')
+      textarea#editor.span9(type='text', rows="5", name="body", placeholder='Enter the pergunta description')=pergunta.body
+  button.btn.btn-primary(type='submit')
+    <i class="icon-pencil icon-white"></i>
+    | Enviar

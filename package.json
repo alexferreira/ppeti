@@ -1,0 +1,35 @@
+{
+  "name": "BlogTest",
+  "version": "0.0.1",
+  "author": "Alex Ferreira <dev@alexferreira.eti.br>",
+  "engines": {
+    "node": ">=0.8.x"
+  },
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/.bin/node-dev app.js",
+    "deploy": "forever restart /home/admin/blog_test/app.js",
+    "start_server": "forever start -o log/out.log -e log/err.log /home/admin/blog_test/app.js",
+    "stop_server": "forever stop /home/admin/blog_test/app.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --ui bdd --growl test/*-spec.js"
+  },
+  "dependencies": {
+    "express": "3.2.5",
+    "mongoose": "3.6.11",
+    "mongoose-friendly": "0.1.2",
+    "connect-mongo": "0.3.2",
+    "connect-flash": "0.1.1",
+    "async": "0.2.9",
+    "jade": "0.31.1",
+    "view-helpers": "0.0.4",
+    "passport": "0.1.17",
+    "passport-local": "0.1.6",
+    "underscore": "1.4.4"
+  },
+  "devDependencies": {
+    "node-dev": "2.0.1",
+    "mocha": "1.10.0",
+    "should": "latest",
+    "supertest": "latest"
+  }
+}

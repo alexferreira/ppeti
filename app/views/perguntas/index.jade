@@ -1,0 +1,44 @@
+extends ../layouts/default
+
+block content
+  if(q)
+    h2
+      | Buscando por:
+      small=q
+  if (perguntas.length)
+    each pergunta in perguntas
+      h3
+        a.title(href='/perguntas/'+pergunta.slug, title=pergunta.title)= pergunta.title
+
+      .row
+        .span8.tags
+          p
+          p
+            i.icon-user
+            |  by &nbsp;
+            a(href=href='/users/'+pergunta.user._id)= pergunta.user.email
+            |  |
+            i.icon-calendar
+            = formatDate(pergunta.createdAt, "%b %d, %Y")
+            |  |
+            i.icon-resposta
+            a(href=href='/perguntas/'+pergunta._id)  #{pergunta.respostas.length} Resperguntaas(s)
+            |  |
+            i.icon-tags
+            |  Tags:
+            if(pergunta.tags)
+              each tag in pergunta.tags.split(',')
+                a.label.label-info(href="/tags/"+tag) #{tag}
+            | &nbsp;
+            | Tipo:
+            =pergunta.type_question
+
+      .clearfix
+      hr
+
+    if (pages > 1)
+      .pagination
+        ul
+          != createPagination(pages, page)
+  else
+    h2 Nehuma pergunta publicada
